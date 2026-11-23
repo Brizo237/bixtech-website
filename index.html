@@ -26,12 +26,11 @@
 %%VERIFY%%<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","EducationalOrganization"],"@id":"%%BASE_URL%%/#org","name":"BixTech Academy","alternateName":["BixTech","BIXTECH"],"slogan":"Nurturing Innovation Through Technology.","url":"%%BASE_URL%%/","logo":"%%BASE_URL%%/icon-192.png","email":"bixtech3@gmail.com","description":"BixTech Academy runs hands-on tech internships for students: build real projects in Machine Learning, Software Engineering, Data Science, Cybersecurity and more."},{"@type":"WebSite","@id":"%%BASE_URL%%/#site","url":"%%BASE_URL%%/","name":"BixTech Academy","alternateName":"BixTech","publisher":{"@id":"%%BASE_URL%%/#org"},"inLanguage":["en","fr"]}]}</script>
 <style>
 /* STEP 1: colour tokens (rgb() only, no hex). Dark values are redefined for dark mode. */
-:root{color-scheme:light dark;
+:root{color-scheme:light;
 --bg:rgb(243,246,252);--card:rgb(255,255,255);--ink:rgb(15,23,42);--muted:rgb(100,116,139);--line:rgb(226,232,240);
 --brand:rgb(37,99,235);--brand2:rgb(99,102,241);--danger:rgb(220,38,38);--ok:rgb(22,163,74);--navy:rgb(8,12,28);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:rgb(11,15,28);--card:rgb(21,27,46);--ink:rgb(232,236,248);--muted:rgb(140,152,178);--line:rgb(40,48,72)}}
-:root[data-theme="dark"]{--bg:rgb(11,15,28);--card:rgb(21,27,46);--ink:rgb(232,236,248);--muted:rgb(140,152,178);--line:rgb(40,48,72)}
+:root[data-theme="dark"]{color-scheme:dark;--bg:rgb(11,15,28);--card:rgb(21,27,46);--ink:rgb(232,236,248);--muted:rgb(140,152,178);--line:rgb(40,48,72)}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
@@ -47,11 +46,12 @@ button,input,select,textarea{font:inherit}
 #splash h1,#splash p{margin:0;opacity:0;animation:fade .6s 1.8s forwards}
 @keyframes fade{to{opacity:1}}
 /* auth screen: always dark page + light card, so fixed colours are used inside the card */
-#auth.on{display:flex;align-items:center;justify-content:center;padding:20px;background:var(--navy);color:white}
+#auth.on{display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);color:var(--ink)}
+:root[data-theme="dark"] #auth.on{background:var(--navy);color:white}
 .wrap{width:100%;max-width:420px}
 .brand{text-align:center;margin-bottom:14px}.brand .logo{width:56px;height:56px;cursor:pointer}
-.brand h2{margin:6px 0 2px}.brand p{margin:0;color:rgb(160,170,195);font-size:.9rem}
-.acard,.mbox{background:rgb(248,250,253);color:rgb(15,23,42);border-radius:20px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.brand h2{margin:6px 0 2px}.brand p{margin:0;color:var(--muted);font-size:.9rem}
+.acard,.mbox{background:rgb(248,250,253);color:rgb(15,23,42);border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(15,23,42,.12);border:1px solid rgb(226,232,240)}
 .tabs{display:grid;grid-template-columns:1fr 1fr;background:rgb(226,231,242);border-radius:12px;padding:4px;margin-bottom:12px}
 .tabs button{border:0;background:none;padding:10px;border-radius:9px;font-weight:600;color:rgb(100,116,139);cursor:pointer}
 .tabs button.on{background:rgb(15,23,42);color:white}
@@ -73,9 +73,7 @@ button,input,select,textarea{font:inherit}
 .soc:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,23,42,.2)}
 .soc:active{transform:translateY(0)}
 .soc:focus-visible,.btn:focus-visible,.row2 button:focus-visible,.legal button:focus-visible{outline:3px solid rgba(37,99,235,.5);outline-offset:2px}
-.soc.apple{background:rgb(0,0,0);border-color:rgb(0,0,0);color:white}
 .soc.github{background:rgb(36,41,47);border-color:rgb(36,41,47);color:white}
-.soc.facebook{background:rgb(24,119,242);border-color:rgb(24,119,242);color:white}
 .soc.loading{pointer-events:none}.soc.loading svg{visibility:hidden}
 .soc.loading::before{content:"";position:absolute;left:16px;width:18px;height:18px;border:2.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
 .socs.busy .soc:not(.loading){opacity:.5;pointer-events:none}
@@ -174,7 +172,6 @@ details>*:not(summary){margin-top:12px}
 
 /* ===================== WEBSITE (all classes start with x-) ===================== */
 :root{--cyan:rgb(0,200,205);--glow:rgba(22,98,240,.22)}                 /* logo cyan + soft shadow colour */
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--glow:rgba(0,200,220,.2)}}
 :root[data-theme="dark"]{--glow:rgba(0,200,220,.2)}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
 #site{overflow-x:hidden}#site img{max-width:100%;display:block}
@@ -314,7 +311,6 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px)
 .dc-badge.pending{background:rgba(245,158,11,.18);color:rgb(180,100,0)}   /* amber */
 .dc-badge.approved{background:rgba(22,163,74,.16);color:rgb(21,128,61)}   /* green */
 .dc-badge.rejected{background:rgba(220,38,38,.14);color:rgb(185,28,28)}   /* red */
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .dc-badge.pending{color:rgb(252,196,95)}:root:not([data-theme="light"]) .dc-badge.approved{color:rgb(110,220,150)}:root:not([data-theme="light"]) .dc-badge.rejected{color:rgb(255,150,150)}}
 :root[data-theme="dark"] .dc-badge.pending{color:rgb(252,196,95)}:root[data-theme="dark"] .dc-badge.approved{color:rgb(110,220,150)}:root[data-theme="dark"] .dc-badge.rejected{color:rgb(255,150,150)}
 .dc-ok{background:rgba(22,163,74,.14);color:var(--ok);border-radius:12px;padding:12px 14px;font-weight:700;margin-bottom:12px}
 .dc-reason{background:rgba(220,38,38,.08);border-left:4px solid var(--danger);border-radius:10px;padding:10px 14px;margin-top:12px}
@@ -559,7 +555,7 @@ body.dc-lock{overflow:hidden}
         <div class="hidden" aria-hidden="true">
         <div id="stEmail">
           <label for="iE">Email address</label><input id="iE" type="email" autocomplete="email" placeholder="you@example.com">
-          <label for="iN">Your name (first time only)</label><input id="iN" autocomplete="name" placeholder="e.g. Brizo Nkeng">
+          <label for="iN">Your name (first time only)</label><input id="iN" autocomplete="name" placeholder="e.g. John Doe">
           <button class="btn" type="button" id="codeBtn" data-a="sendcode">Send me a code</button>
         </div>
         <div id="stCode" class="hidden">
@@ -574,8 +570,10 @@ body.dc-lock{overflow:hidden}
       </div>
       <div id="pUp" class="hidden">
         <h3 class="atitle">Create your account</h3>
-        <p class="asub">Fill in your details, then add the school form. It takes about two minutes.</p>
-        <label for="uN">Full name</label><input id="uN" autocomplete="name" placeholder="e.g. Brizo Nkeng">
+        <p class="asub">Sign up with Google or GitHub, or fill in your details below. You add your school form after you sign in.</p>
+        <div class="socs" data-socs></div>
+        <div class="divider">OR SIGN UP WITH EMAIL</div>
+        <label for="uN">Full name</label><input id="uN" autocomplete="name" placeholder="e.g. John Doe">
         <label for="uE">Email address</label><input id="uE" type="email" autocomplete="email" placeholder="you@example.com">
         <label for="uP">Password (8 or more characters)</label><input id="uP" type="password" autocomplete="new-password">
         <label for="uP2">Confirm password</label><input id="uP2" type="password" autocomplete="new-password">
@@ -600,8 +598,8 @@ body.dc-lock{overflow:hidden}
         <button class="link" data-tab="in">Back to student sign in</button>
       </div>
     </div>
-    <button class="link" data-a="site" style="color:rgb(160,170,195)">Back to website</button>
-    <button class="link" data-tab="ad" style="color:rgb(160,170,195)">Admin login</button>
+    <button class="link" data-a="site" style="color:var(--muted)">Back to website</button>
+    <button class="link" data-tab="ad" style="color:var(--muted)">Admin login</button>
   </div>
 </section>
 
@@ -739,7 +737,7 @@ async function signIn(){
     const m=await api("/auth/register",{name:old.name,email:e,password:p,course:old.course,field:old.field,duration:old.duration});
     if(m.ok)try{sessionStorage.setItem("bix_o","1")}catch(x){}
     ses(old.email);E.textContent="";$("iP").value="";page="home";toast("Welcome back, "+old.name.split(" ")[0]+"!");return render()}
-  E.textContent="Wrong email or password. If you signed up with Google or Apple, use that button instead."}
+  E.textContent="Wrong email or password. If you signed up with Google or GitHub, use that button instead."}
 async function adminGo(){ // checks email + hashed password
   await ensureAdmin();const e=v("adE").toLowerCase(),p=$("adP").value,E=$("adErr");
   if(e!==db.admin.email||await hash("admin:"+p)!==db.admin.hash)return E.textContent="Wrong admin email or password.";
@@ -750,15 +748,16 @@ async function adminGo(){ // checks email + hashed password
 /* STEP 4c: social login (OAuth 2.0). Secrets stay on the server (server.js); this code only starts the redirect and reads the result. */
 const SOC=[
 ["google","Google",'<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>'],
-["apple","Apple",'<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>'],
-["github","GitHub",'<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>'],
-["facebook","Facebook",'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#fff"/><path fill="#1877F2" d="M16.67 15.47 17.2 12h-3.33V9.75c0-.95.46-1.88 1.95-1.88h1.51V4.92s-1.37-.23-2.68-.23c-2.73 0-4.51 1.66-4.51 4.65V12H7.1v3.47h3.04V24h3.73v-8.53z"/></svg>'],
-["microsoft","Microsoft",'<svg viewBox="0 0 23 23" aria-hidden="true"><path fill="#F25022" d="M1 1h10v10H1z"/><path fill="#7FBA00" d="M12 1h10v10H12z"/><path fill="#00A4EF" d="M1 12h10v10H1z"/><path fill="#FFB900" d="M12 12h10v10H12z"/></svg>']];
+["github","GitHub",'<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>']];
 const SOC_ERR={access_denied:"Sign-in was cancelled. You can try again whenever you like.",state:"Your sign-in link expired or was opened in a different browser. Please try again.",not_configured:"That sign-in method isn’t set up yet. Please choose another option.",no_email:"That account didn’t share a verified email address, which BixTech needs. Please choose another option.",email_exists:"An account with this email already exists. Please sign in with the method you used first.",provider:"We couldn’t complete sign-in with that provider. Please try again."};
 let socCfg=null;
 document.querySelectorAll("[data-socs]").forEach(el=>el.innerHTML=SOC.map(([k,n,svg])=>`<button type="button" class="soc ${k}" data-prov="${k}">${svg}<span>Continue with ${n}</span></button>`).join(""));
 function banner(msg,kind){const b=$("authBanner");b.textContent=msg||"";b.className="banner"+(msg?" show "+kind:"")}
 function socReset(){document.querySelectorAll(".soc.loading").forEach(b=>b.classList.remove("loading"));document.querySelectorAll(".socs").forEach(x=>x.classList.remove("busy"))}
+(async()=>{try{ // hide the sign-in buttons for providers that are not set up on the server, so students only see ones that work
+  if(location.protocol==="file:")return;const r=await fetch("/api/providers",{credentials:"same-origin",headers:{Accept:"application/json"}});const j=r.ok?await r.json():null;if(!j||!j.providers)return;
+  Object.keys(j.providers).forEach(k=>{if(!j.providers[k])document.querySelectorAll(".soc."+k).forEach(b=>b.remove())});
+  document.querySelectorAll(".socs").forEach(g=>{if(!g.querySelector(".soc:not(.face)"))g.classList.add("hidden")})}catch(e){}})();
 async function socStart(btn){
   const k=btn.dataset.prov;banner("");btn.classList.add("loading");btn.closest(".socs").classList.add("busy");
   const stop=(m)=>{socReset();banner(m,"bad")};
@@ -996,7 +995,7 @@ document.addEventListener("click",e=>{
 });
 /* STEP F: small controls */
 $("xlang").onclick=()=>{LANG=1-LANG;paint()};
-$("xtheme").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark"};
+$("xtheme").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme==="dark";r.dataset.theme=dark?"light":"dark"};
 $("xmenu").onclick=()=>$("xnav").classList.toggle("open");
 document.querySelectorAll(".x-links a").forEach(a=>a.onclick=()=>$("xnav").classList.remove("open"));
 $("xwa").onclick=()=>$("xpanel").classList.toggle("x-h");$("xpx").onclick=()=>$("xpanel").classList.add("x-h");
@@ -1169,7 +1168,7 @@ async function submit(){
   S.err=r.status===0?OFFLINE:(UP_ERR[r.j.error]||"Upload failed. Please try again.");paint()}
 /* ---- sign-up: step 1 create the account, step 2 send the school form ---- */
 const REG_ERR={bad_name:"Enter your full name.",bad_email:"Enter a valid email address.",weak_password:"Your password needs at least 8 characters.",
-  email_exists:"That email is already registered. Tap \u201cI already have an account\u201d (or use the Google / Apple button you used before).",too_many_requests:"Too many tries. Please wait a few minutes.",forbidden:"Something went wrong. Refresh the page and try again."};
+  email_exists:"That email is already registered. Tap \u201cI already have an account\u201d (or use the Google / GitHub button you used before).",too_many_requests:"Too many tries. Please wait a few minutes.",forbidden:"Something went wrong. Refresh the page and try again."};
 function paintSignup(){
   const R=$("suDoc");if(!R)return;const f=S.file;
   R.innerHTML=(f?(f.mime.startsWith("image/")?`<img class="dc-prev" src="${S.prevUrl}" alt="Preview of your school form">`
